@@ -5,12 +5,13 @@ tile, button{
 }
 tile{
     overflow: clip;
+    aspect-ratio: 1;
 }
 tile:hover{
     scale:105%;
     transform-origin: center;
 }
-tile > img{
+tile img{
     --size: 75%;
     position: absolute;
     inset:50%;
@@ -21,13 +22,13 @@ tile > img{
     object-fit: contain;
 
 }
-flag, star{
+tile flag, tile star{
     z-index:2;
     padding:2px;
     position: absolute;
     opacity: 0;
 }
-flag{
+tile flag{
     color:var(--color-secondairy);
 }
 tile[data-team1="true"] > flag:first-of-type, 
@@ -35,7 +36,7 @@ tile[data-team2="true"] > flag:last-of-type,
 tile[data-favorite="true"] > star{
 opacity: 1;
 }
-flag:first-of-type{
+tile flag:first-of-type{
     top:0;
     right:0;
     border-color: transparent;
@@ -43,14 +44,14 @@ flag:first-of-type{
     border-top-color: var(--color-primary);
 }
 
-flag:last-of-type{
+tile flag:last-of-type{
     bottom:0;
     left:0;
     border-color: transparent;
     border-bottom-color: var(--color-primary);
     border-left-color: var(--color-primary);
 }
-flag::before{
+tile flag::before{
     z-index:-1;
     content: '';
     position: absolute;
@@ -61,7 +62,7 @@ flag::before{
     border-style: solid;
 }
 
-flag::before {
+tile flag::before {
     border-width: 1.2em;
     border-right-color: inherit;
     border-top-color: inherit;
@@ -69,7 +70,7 @@ flag::before {
     border-left-color: inherit;
 }
 
-star{
+tile star{
     color:var(--color-primary);
     top:2px;
     left:0;
