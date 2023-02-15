@@ -20,6 +20,7 @@ main{
 }
 aside{
     height:min(70vw, 70vh);
+    border:var(--border);
     border-radius: var(--border-radius);
     display:flex;
     flex-direction: column;
