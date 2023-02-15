@@ -1,2 +1,34 @@
-@import url(/assets/css/root.css);
-@import url(/assets/css/components.css);
+@import url('./root.css');
+@import url('./components.css');
+body{
+    background:var(--background-color);
+}
+section{
+    display:flex;
+    gap:20px;
+}
+main{
+    width:min(70vh, 70vw);
+    aspect-ratio: 1;
+    border:var(--border);
+    border-radius: var(--border-radius);
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap:5px;
+    padding:20px;
+}
+aside{
+    height:min(70vw, 70vh);
+    border-radius: var(--border-radius);
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    padding:20px;
+}
+aside > :last-child{
+    margin-top:auto;
+}
+h1,h2,p,button{
+    color:var(--color-primary);
+}

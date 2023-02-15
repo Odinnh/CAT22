@@ -12,3 +12,6 @@
 
     --background-color:var(--color-secondairy);
 }
+*{
+    box-sizing: border-box;
+}

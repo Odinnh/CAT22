@@ -1,0 +1,17 @@
+tile, button{
+    border:var(--border);
+    border-radius: var(--border-radius);
+}
+flag{
+    background-color:var(--color-primary);
+    color:var(--color-secondairy);
+}
+star{
+    color:var(--color-primary);
+}
+button{
+    color:var(--color-primary);
+    background-color: unset;
+    padding:5px;
+    text-align: center;
+}
