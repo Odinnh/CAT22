@@ -1,0 +1,14 @@
+:root{
+    --color-primary:#ffffff;
+    --color-secondairy:#505050;
+    --color-tertiary:#222222;
+    --color-accent:#f3b200;
+    
+    --border-radius:5px;
+    --border: 1px solid var(--color-primary);
+
+    --text-color:var(--color-primary);
+    --text-alt: var(--color-accent);
+
+    --background-color:var(--color-secondairy);
+}

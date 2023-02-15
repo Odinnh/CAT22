@@ -1,0 +1,14 @@
+.tile{
+    border:var(--border);
+    border-radius: var(--border-radius);
+}
+.flag{
+    background-color:var(--color-primary);
+    color:var(--color-secondairy);
+}
+.flag.top{
+
+}
+.flag.bottom{
+
+}
