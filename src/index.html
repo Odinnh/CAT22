@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHOWDOWN BINGO</title>
+    
+    <script src="https://kit.fontawesome.com/d8228dcdfd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="./index.js" type="module"></script>
+</head>
+
+<body>
+    <section>
+        <main class="prevent-select">
+        </main>
+        <aside>
+            <div class="detail-photoContainer">
+                <div class="favorite prevent-select"><i class="fa-solid fa-star"></i></div>
+            </div>
+            <h2>{ 1 , 3 }</h2>
+            <h1>Get An Oak Log</h1>
+            <p>description</p>
+            <button class="prevent-select">Collect</button>
+        </aside>
+    </section>
+    <script>
+        document.querySelectorAll('img').forEach((img) => {
+            img.setAttribute('draggable', false);
+        })
+    </script>
+</body>
+
+</html>

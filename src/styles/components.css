@@ -1,0 +1,89 @@
+tile, button{
+    border:var(--border);
+    border-radius: var(--border-radius);
+    position:relative;
+}
+tile{
+    overflow: clip;
+}
+tile:hover{
+    scale:105%;
+    transform-origin: center;
+}
+tile > img{
+    --size: 75%;
+    position: absolute;
+    inset:50%;
+    margin-left:calc(-1 * (var(--size) / 2));
+    margin-top:calc(-1 * (var(--size) / 2));
+    width:var(--size);
+    height:var(--size);
+    object-fit: contain;
+
+}
+flag, star{
+    z-index:2;
+    padding:2px;
+    position: absolute;
+    opacity: 0;
+}
+flag{
+    color:var(--color-secondairy);
+}
+tile[data-team1="true"] > flag:first-of-type, 
+tile[data-team2="true"] > flag:last-of-type,
+tile[data-favorite="true"] > star{
+opacity: 1;
+}
+flag:first-of-type{
+    top:0;
+    right:0;
+    border-color: transparent;
+    border-right-color: var(--color-primary);
+    border-top-color: var(--color-primary);
+}
+
+flag:last-of-type{
+    bottom:0;
+    left:0;
+    border-color: transparent;
+    border-bottom-color: var(--color-primary);
+    border-left-color: var(--color-primary);
+}
+flag::before{
+    z-index:-1;
+    content: '';
+    position: absolute;
+    top: inherit;
+    right: inherit;
+    bottom:inherit;
+    left:inherit;
+    border-style: solid;
+}
+
+flag::before {
+    border-width: 1.2em;
+    border-right-color: inherit;
+    border-top-color: inherit;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+}
+
+star{
+    color:var(--color-primary);
+    top:2px;
+    left:0;
+    font-size:0.8em;
+}
+button{
+    color:var(--color-primary);
+    background-color: unset;
+    padding:5px;
+    text-align: center;
+}
+
+.prevent-select{
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}

@@ -1,5 +1,28 @@
 {
+  "name": "catbingo",
+  "version": "1.0.0",
+  "description": "a fashion scape library for old school runescape",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Odinnh/CATBINGO.git"
+  },
+  "keywords": [],
+  "author": "Odinn Hullekes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Odinnh/CATBINGO/issues"
+  },
+  "homepage": "odinn.nl/CATBINGO",
   "dependencies": {
-    "firebase": "^9.17.1"
+    "firebase": "^9.14.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
