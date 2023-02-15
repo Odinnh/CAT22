@@ -1,10 +1,41 @@
 tile, button{
     border:var(--border);
     border-radius: var(--border-radius);
+    position:relative;
+}
+tile{
+    overflow: clip;
+}
+tile:hover{
+    scale:105%;
+    transform-origin: center;
+}
+tile > img{
+    --size: 75%;
+    position: absolute;
+    inset:50%;
+    margin-left:calc(-1 * (var(--size) / 2));
+    margin-top:calc(-1 * (var(--size) / 2));
+    width:var(--size);
+    height:var(--size);
+    object-fit: contain;
+
+}
+flag, star{
+    z-index:2;
 }
 flag{
     background-color:var(--color-primary);
     color:var(--color-secondairy);
+    position: absolute;
+}
+flag:first-of-type{
+    top:0;
+    right:0;
+}
+flag:last-of-type{
+    bottom:0;
+    left:0;
 }
 star{
     color:var(--color-primary);
@@ -14,4 +45,10 @@ button{
     background-color: unset;
     padding:5px;
     text-align: center;
+}
+
+.prevent-select{
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
