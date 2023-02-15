@@ -25,10 +25,15 @@ flag, star{
     z-index:2;
     padding:2px;
     position: absolute;
+    opacity: 0;
 }
 flag{
-    /* background-color:var(--color-primary); */
     color:var(--color-secondairy);
+}
+tile[data-team1="true"] > flag:first-of-type, 
+tile[data-team2="true"] > flag:last-of-type,
+tile[data-favorite="true"] > star{
+opacity: 1;
 }
 flag:first-of-type{
     top:0;
