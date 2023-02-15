@@ -5,7 +5,7 @@ import {
     setDoc, getDoc, getDocs, query, onSnapshot
 } from 'firebase/firestore'
 
-import { loadBoard } from './js/app.js'
+import { loadBoard, updateTiles } from './js/app.js'
 
 
 // Your web app's Firebase configuration
@@ -30,7 +30,8 @@ const auth = getAuth(app);
 
 let remoteTiles = collection(db, 'Tiles')
 let allTiles = {}
-
+let group1 = []
+let group2 = []
 
 let loadoutIndex = 0
 // async function propLoadouts() {
@@ -70,27 +71,30 @@ queryForDocuments().then(() => {
             tile.addEventListener('click', (e) => {
                 console.log(e.currentTarget)
             })
-            
+
         })
         const unsub = onSnapshot(
             doc(db, "group1", "Collected"),
             { includeMetadataChanges: true },
             (doc) => {
+                group1 = []
                 Object.entries(doc.data()).forEach((tile) => {
-                document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team1 = tile[1]
-        
+                    // document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team1 = tile[1]
+                    group1[tile[0]] = tile[1]
                 })
-            }
-        )
+                updateTiles(group1, group2)
+            })
         const unsub2 = onSnapshot(
             doc(db, "group2", "Collected"),
             { includeMetadataChanges: true },
             (doc) => {
+                group2 = []
                 Object.entries(doc.data()).forEach((tile) => {
-                document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team2 = tile[1]
-        
+                    // document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team2 = tile[1]
+                    group2[tile[0]] = tile[1]
+
                 })
-            }
-        )
+                updateTiles(group1, group2)
+            })
     })
 })
