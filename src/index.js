@@ -1,48 +1,16 @@
-import { initializeApp } from "firebase/app"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-import {
-    getFirestore, doc, docs, collection,
-    setDoc, getDoc, getDocs, query, onSnapshot
-} from 'firebase/firestore'
-
-import { loadBoard, updateTiles } from './js/app.js'
-
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyAnOiG77O1ukT9C2x8u1VbMLw7For9C_3w",
-    authDomain: "bingo-50cec.firebaseapp.com",
-    databaseURL: "https://bingo-50cec-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "bingo-50cec",
-    storageBucket: "bingo-50cec.appspot.com",
-    messagingSenderId: "866066986693",
-    appId: "1:866066986693:web:d1a5bb328eba2aef0562ac",
-    measurementId: "G-SDLQC2W859"
-};
-
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore()
-const auth = getAuth(app);
-//detect auth state
+import { app, db, auth, firebaseConfig } from './fs.js'
+import { collection, doc, docs, getDocs, onSnapshot } from 'firebase/firestore'
+import { loadBoard, updateTiles, fillDetailPannel } from './js/app.js'
 
 let remoteTiles = collection(db, 'Tiles')
 let allTiles = {}
+let targetGroup = 'none'
 let group1 = []
 let group2 = []
+let favorite = []
 
-let loadoutIndex = 0
-// async function propLoadouts() {
-//     const mySnapshot = await getDoc(remoteLoadouts)
-//     if (mySnapshot.exists()) {
-//         const docData = mySnapshot.data()
-//         loadouts.push(docData)
-//         console.log(loadouts)
-//     }
-//
-// }
+
+
 
 async function queryForDocuments() {
     const querySnapshot = await getDocs(remoteTiles)
@@ -52,24 +20,16 @@ async function queryForDocuments() {
             ...doc.data()
         }
     })
-
-
 }
 
-
-onAuthStateChanged(auth, user => {
-    if (user != null) {
-        console.log('logged in')
-    } else {
-        console.log('no user')
-    }
-})
-// loadBoard(data)
 queryForDocuments().then(() => {
-    loadBoard(allTiles).then(() => {
+    loadBoard(allTiles, targetGroup).then(() => {
+        targetGroup = document.body.id || false 
         document.querySelectorAll('tile').forEach((tile) => {
             tile.addEventListener('click', (e) => {
-                console.log(e.currentTarget)
+                fillDetailPannel(e.currentTarget.dataset, targetGroup)
+                document.querySelectorAll('.SELECTED').forEach((el)=>{el.classList.remove('SELECTED')})
+                e.currentTarget.classList.add('SELECTED')
             })
 
         })
@@ -82,7 +42,7 @@ queryForDocuments().then(() => {
                     // document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team1 = tile[1]
                     group1[tile[0]] = tile[1]
                 })
-                updateTiles(group1, group2)
+                updateTiles(group1, group2, favorite)
             })
         const unsub2 = onSnapshot(
             doc(db, "group2", "Collected"),
@@ -94,7 +54,22 @@ queryForDocuments().then(() => {
                     group2[tile[0]] = tile[1]
 
                 })
-                updateTiles(group1, group2)
+                updateTiles(group1, group2, favorite)
             })
+
+        if (targetGroup != false) {
+            const favSnap = onSnapshot(
+                doc(db, targetGroup, "Favorite"),
+                { includeMetadataChanges: true },
+                (doc) => {
+                    favorite = []
+                    Object.entries(doc.data()).forEach((tile) => {
+                        // document.querySelector(`[data-coord="${tile[0]}"]`).dataset.team1 = tile[1]
+                        favorite[tile[0]] = tile[1]
+                    })
+                    updateTiles(group1, group2, favorite)
+                })
+        }
+
     })
 })

@@ -1,9 +1,9 @@
-tile, button{
+tile, button, bigTile{
     border:var(--border);
     border-radius: var(--border-radius);
     position:relative;
 }
-tile{
+tile, bigTile{
     overflow: clip;
     aspect-ratio: 1;
 }
@@ -11,7 +11,7 @@ tile:hover{
     scale:105%;
     transform-origin: center;
 }
-tile img{
+tile img, bigTile img{
     --size: 75%;
     position: absolute;
     inset:50%;
@@ -22,7 +22,7 @@ tile img{
     object-fit: contain;
 
 }
-tile flag, tile star{
+tile flag, tile heart, bigTile heart{
     z-index:2;
     padding:2px;
     position: absolute;
@@ -33,7 +33,7 @@ tile flag{
 }
 tile[data-team1="true"] > flag:first-of-type, 
 tile[data-team2="true"] > flag:last-of-type,
-tile[data-favorite="true"] > star{
+tile[data-favorite="true"] > heart{
 opacity: 1;
 }
 tile flag:first-of-type{
@@ -70,12 +70,16 @@ tile flag::before {
     border-left-color: inherit;
 }
 
-tile star{
+tile heart, bigTile heart{
     color:var(--color-primary);
     top:2px;
     left:0;
     font-size:0.8em;
 }
+bigTile heart{
+    color:red;
+}
+
 button{
     color:var(--color-primary);
     background-color: unset;

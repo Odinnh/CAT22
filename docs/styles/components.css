@@ -1,64 +1,78 @@
-tile, button{
-    border:var(--border);
+tile,
+button {
+    border: var(--border);
     border-radius: var(--border-radius);
-    position:relative;
+    position: relative;
 }
-tile{
+
+tile {
     overflow: clip;
     aspect-ratio: 1;
 }
-tile:hover{
-    scale:105%;
+
+main tile:hover {
+    scale: 105%;
     transform-origin: center;
 }
-tile img{
+
+tile img {
     --size: 75%;
     position: absolute;
-    inset:50%;
-    margin-left:calc(-1 * (var(--size) / 2));
-    margin-top:calc(-1 * (var(--size) / 2));
-    width:var(--size);
-    height:var(--size);
+    inset: 50%;
+    margin-left: calc(-1 * (var(--size) / 2));
+    margin-top: calc(-1 * (var(--size) / 2));
+    width: var(--size);
+    height: var(--size);
     object-fit: contain;
 
 }
-tile flag, tile star{
-    z-index:2;
-    padding:2px;
+
+tile flag,
+tile heart i {
+    z-index: 2;
+    padding: 2px;
     position: absolute;
+}
+
+tile heart .fa-solid {
     opacity: 0;
 }
-tile flag{
-    color:var(--color-secondairy);
+
+tile flag {
+    opacity: 0;
+    color: var(--color-secondairy);
 }
-tile[data-team1="true"] > flag:first-of-type, 
-tile[data-team2="true"] > flag:last-of-type,
-tile[data-favorite="true"] > star{
-opacity: 1;
+
+tile[data-team1="true"]>flag:first-of-type,
+tile[data-team2="true"]>flag:last-of-type,
+tile[data-favorite="true"]>heart .fa-solid {
+    opacity: 1;
 }
-tile flag:first-of-type{
-    top:0;
-    right:0;
+
+tile flag:first-of-type {
+    top: 0;
+    right: 0;
     border-color: transparent;
     border-right-color: var(--color-primary);
     border-top-color: var(--color-primary);
 }
 
-tile flag:last-of-type{
-    bottom:0;
-    left:0;
+tile flag:last-of-type {
+    bottom: 0;
+    left: 0;
     border-color: transparent;
     border-bottom-color: var(--color-primary);
     border-left-color: var(--color-primary);
 }
-tile flag::before{
-    z-index:-1;
+
+tile flag::before {
+    z-index: -1;
     content: '';
     position: absolute;
     top: inherit;
     right: inherit;
-    bottom:inherit;
-    left:inherit;
+    bottom: inherit;
+    left: inherit;
     border-style: solid;
 }
 
@@ -70,21 +84,42 @@ tile flag::before {
     border-left-color: inherit;
 }
 
-tile star{
-    color:var(--color-primary);
-    top:2px;
-    left:0;
-    font-size:0.8em;
+tile heart {
+    color: var(--color-primary);
+    top: 2px;
+    left: 0;
+    font-size: 0.8em;
 }
-button{
-    color:var(--color-primary);
-    background-color: unset;
+
+tile.SELECTED {
+    border-width: 5px;
+    --color-primary: var(--color-accent);
+    border-color: var(--color-accent);
+    scale: 1.09;
+}
+
+aside tile heart {
+    font-size: 1.5rem;
+}
+aside tile heart i{
     padding:5px;
+}
+aside heart:hover > i{
+    scale: 110%;
+}
+
+button {
+    color: var(--color-primary);
+    background-color: unset;
+    padding: 5px;
     text-align: center;
 }
 
-.prevent-select{
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+.prevent-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
