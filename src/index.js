@@ -25,6 +25,8 @@ async function queryForDocuments() {
 queryForDocuments().then(() => {
     loadBoard(allTiles, targetGroup).then(() => {
         targetGroup = document.body.id || false 
+        fillDetailPannel(document.querySelectorAll('tile')[24].dataset, targetGroup)
+        document.querySelectorAll('tile')[24].classList.add('SELECTED')
         document.querySelectorAll('tile').forEach((tile) => {
             tile.addEventListener('click', (e) => {
                 fillDetailPannel(e.currentTarget.dataset, targetGroup)
